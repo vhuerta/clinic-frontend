@@ -24,20 +24,20 @@ jobs:
           root: /workspace
           paths:
             - repo
-  build:
-    working_directory: /workspace/repo
-    docker:
-      - image: circleci/node:10.7
-    steps:
-      - attach_workspace:
-          at: /workspace/repo
-      - run: yarn test
+  # build:
+  #   working_directory: /workspace/repo
+  #   docker:
+  #     - image: circleci/node:10.7
+  #   steps:
+  #     - attach_workspace:
+  #         at: /workspace/repo
+  #     - run: yarn test
 
-workflows:
-  version: 2
-  one_and_two:
-    jobs:
-      - test
-      - build
-          requires:
-            - test
+# workflows:
+#   version: 2
+#   one_and_two:
+#     jobs:
+#       - test
+#       - build
+#           requires:
+#             - test
