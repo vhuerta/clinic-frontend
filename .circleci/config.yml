@@ -39,5 +39,5 @@ workflows:
     jobs:
       - build
       - postbuild:
-        requires:
-          - build
+          requires:
+            - build
