@@ -28,7 +28,7 @@ jobs:
           root: ~
           paths:
             - repo
-  test:
+  build:
     <<: *defaults
     steps:
       - attach_workspace:
