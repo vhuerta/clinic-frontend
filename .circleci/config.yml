@@ -24,14 +24,14 @@ jobs:
           root: workspace
           paths:
             - repo
-  # build:
-  #   working_directory: /workspace/repo
-  #   docker:
-  #     - image: circleci/node:10.7
-  #   steps:
-  #     - attach_workspace:
-  #         at: /workspace/repo
-  #     - run: yarn test
+  dist:
+    working_directory: /workspace/repo
+    docker:
+      - image: circleci/node:10.7
+    steps:
+      - attach_workspace:
+          at: /workspace/repo
+      - run: yarn build
 
 # workflows:
 #   version: 2
