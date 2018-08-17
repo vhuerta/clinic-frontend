@@ -2,11 +2,10 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-
 version: 2
 jobs:
   test: 
-    working_directory: ~/repo
+    working_directory: /workspace/repo
     docker:
       - image: circleci/node:10.7
     steps:
@@ -22,16 +21,16 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
       - persist_to_workspace:
-          root: ~
+          root: /workspace
           paths:
             - repo
   build:
-    working_directory: ~/repo
+    working_directory: /workspace/repo
     docker:
       - image: circleci/node:10.7
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: /workspace/repo
       - run: yarn test
 
 workflows:
