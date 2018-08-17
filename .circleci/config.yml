@@ -2,16 +2,13 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:10.7
-
 
 version: 2
 jobs:
   test: 
-    <<: *defaults
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.7
     steps:
       - checkout
       - restore_cache:
@@ -29,7 +26,9 @@ jobs:
           paths:
             - repo
   build:
-    <<: *defaults
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.7
     steps:
       - attach_workspace:
           at: ~/repo
