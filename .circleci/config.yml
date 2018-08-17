@@ -5,7 +5,7 @@
 version: 2
 jobs:
   build: 
-    working_directory: /workspace/repo
+    working_directory: ~/workspace/repo
     docker:
       - image: circleci/node:10.7
     steps:
@@ -21,7 +21,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
       - persist_to_workspace:
-          root: /workspace
+          root: workspace
           paths:
             - repo
   # build:
