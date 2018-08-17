@@ -33,11 +33,11 @@ jobs:
           at: /workspace/repo
       - run: yarn build
 
-# workflows:
-#   version: 2
-#   one_and_two:
-#     jobs:
-#       - test
-#       - build
-#           requires:
-#             - test
+workflows:
+  version: 2
+  build_dist_deploy:
+    jobs:
+      - build
+      - dist
+          requires:
+            - build
