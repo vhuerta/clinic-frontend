@@ -25,12 +25,12 @@ jobs:
           paths:
             - repo
   dist:
-    working_directory: /workspace/repo
+    working_directory: ~/workspace/repo
     docker:
       - image: circleci/node:10.7
     steps:
       - attach_workspace:
-          at: /workspace/repo
+          at: ~/workspace/repo
       - run: yarn build
 
 workflows:
