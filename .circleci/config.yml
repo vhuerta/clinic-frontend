@@ -41,7 +41,7 @@ jobs:
           command: sudo apt update
       - run:
           name: Install pip
-          command: sudo apt install awscli, python-pip
+          command: sudo apt install python-pip
       - run:
           name: Install awscli
           command: sudo pip install awscli
