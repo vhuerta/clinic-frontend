@@ -37,8 +37,8 @@ jobs:
       - image: circleci/node:10.7
     steps:
       - run:
-        name: Install pip
-        command: sudo apt update && apt install awscli, python-pip
+          name: Install pip
+          command: sudo apt update && apt install awscli, python-pip
       - run:
           name: Install awscli
           command: sudo pip install awscli
