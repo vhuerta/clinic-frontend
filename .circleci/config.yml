@@ -44,7 +44,7 @@ jobs:
           command: sudo apt install -y python3-pip
       - run:
           name: Install awscli
-          command: sudo pip install awscli
+          command: sudo pip3 install awscli
       - checkout
       - restore_cache:
           keys:
