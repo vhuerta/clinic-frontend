@@ -69,7 +69,7 @@ workflows:
       - test:
           requires:
             - checkout
-      - deploy_development
+      - deploy_development:
           requires:
             - test
           filters:
