@@ -6,7 +6,7 @@ import {
   Redirect,
   Link
 } from "react-router-dom";
-import protectedRoute from "./auth/protectedRoute";
+import ProtectedRouteHoC from "./auth/ProtectedRouteHoC";
 import AuthRoutes from "./auth/AuthRoutes";
 import { AuthProvider, AuthConsumer } from "./auth/AuthContext";
 
@@ -44,7 +44,7 @@ class App extends Component {
           <Fragment>
             <Switch>
               <Route path="/auth" component={AuthRoutes} />
-              <Route path="/" component={protectedRoute(Home)} />
+              <Route path="/" component={ProtectedRouteHoC(Home)} />
               <Redirect to="/" />
             </Switch>
           </Fragment>

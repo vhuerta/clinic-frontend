@@ -4,7 +4,7 @@ import {
   handleAuthentication,
   login,
   verifyAuthentication
-} from "../../lib/auth0";
+} from "./AuthAPI";
 
 const AuthContext = createContext();
 

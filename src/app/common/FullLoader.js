@@ -62,7 +62,7 @@ const Loader = Styled.div`
 }
 `;
 
-export default class CallbackLoader extends Component {
+export default class FullLoader extends Component {
   render() {
     return (
       <FullContainer>

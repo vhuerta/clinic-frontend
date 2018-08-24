@@ -5,7 +5,7 @@ import to from "await-to-js";
 import { Redirect } from "react-router-dom";
 
 import { AuthConsumer } from "./AuthContext";
-import CallbackLoader from "./CallbackLoader";
+import FullLoader from "./../common/FullLoader";
 
 export class Callback extends Component {
   static propTypes = {
@@ -20,13 +20,13 @@ export class Callback extends Component {
     const [err] = await to(this.props.handleAuthentication());
     if (err) {
       return this.props.login();
-    } 
+    }
     this.props.loadAuthenticationData();
     setTimeout(() => this.setState({ isLoading: false }), 2000);
   }
 
   render() {
-    return this.state.isLoading ? <CallbackLoader /> : <Redirect to="/" />;
+    return this.state.isLoading ? <FullLoader /> : <Redirect to="/" />;
   }
 }
 
