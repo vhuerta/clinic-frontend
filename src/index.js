@@ -6,6 +6,6 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import "./app/common/styles.scss";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"))
 
 registerServiceWorker();

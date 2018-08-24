@@ -1,32 +1,46 @@
-import React, { Component } from "react";
-import classnames from "classnames";
+import React, { Component, Fragment } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import protectedRoute from "./auth/protectedRoute";
+import Callback from "./auth/Callback";
+import { AuthProvider, AuthConsumer } from "./auth/AuthContext";
 
-import logo from "./../logo.svg";
-import Styles from "./App.scss";
-import CommonStyles from "./common/styles.scss";
+const Home = () => (
+  <AuthConsumer>
+    {({ payload }) => <h1>Home {payload.nickname}</h1>}
+  </AuthConsumer>
+);
+const Auth = () => (
+  <Fragment>
+    <Switch>
+      <Route exact path="/auth/callback" component={Callback} />
+      <Redirect to="/auth/callback" />
+    </Switch>
+  </Fragment>
+);
 
 class App extends Component {
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
   render() {
     return (
-      <div className={Styles["App"]}>
-        <header className={Styles["App-header"]}>
-          <img src={logo} className={Styles["App-logo"]} alt="logo" />
-          <h1 className={Styles["App-title"]}>Welcome to React</h1>
-        </header>
-        <p className={Styles["App-intro"]}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <br />
-        <button
-          className={classnames({
-            [CommonStyles["button"]]: true,
-            [CommonStyles["is-primary"]]: true,
-            [CommonStyles["is-outlined"]]: true
-          })}
-        >
-          Super button
-        </button>
-      </div>
+      <Router>
+        <AuthProvider>
+          <Fragment>
+            <Switch>
+              <Route path="/auth" component={Auth} />
+              <Route path="/" component={protectedRoute(Home)} />
+              <Redirect to="/" />
+            </Switch>
+          </Fragment>
+        </AuthProvider>
+      </Router>
     );
   }
 }
