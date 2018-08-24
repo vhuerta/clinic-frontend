@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { AuthConsumer } from "./AuthContext";
 
-import CallbackLoader from '../auth/CallbackLoader';
+import CallbackLoader from "../auth/CallbackLoader";
 
 class RouteProtector extends Component {
   static propTypes = {
-    component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
+    children            : PropTypes.element.isRequired,
     isAuthenticated     : PropTypes.bool.isRequired,
     isVerifying         : PropTypes.bool.isRequired,
     login               : PropTypes.func.isRequired,
@@ -36,17 +36,16 @@ class RouteProtector extends Component {
             this.props.login();
         }
       );
-    }  
+    }
   }
 
   render() {
-    const { component, passThroughProps } = this.props;
+    const { children } = this.props;
 
     return this.state.isVerifying || !this.state.isAuthenticated ? (
       <CallbackLoader />
     ) : (
-      this.state.isAuthenticated
-        && React.createElement(component, passThroughProps)
+      this.state.isAuthenticated && children
     );
   }
 }
@@ -56,13 +55,13 @@ export default ProtectedComponent => {
     <AuthConsumer>
       {({ isVerifying, isAuthenticated, login, verifyAuthentication }) => (
         <RouteProtector
-          component={ProtectedComponent}
           isVerifying={isVerifying}
           isAuthenticated={isAuthenticated}
           login={login}
           verifyAuthentication={verifyAuthentication}
-          {...props}
-        />
+        >
+          <ProtectedComponent {...props} />
+        </RouteProtector>
       )}
     </AuthConsumer>
   );

@@ -56,7 +56,7 @@ const Loader = Styled.div`
   background-position: center bottom;
   animation-name: grow;
   animation-duration: ${animationDuration}s;
-  animation-timing-function: linear;
+  animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
