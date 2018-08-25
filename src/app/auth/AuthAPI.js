@@ -9,9 +9,6 @@ const config = {
   scope       : `${process.env.REACT_APP_AUTH0_SCOPE}`
 };
 
-console.log(process.env);
-console.log(config);
-
 export const auth0Instance = new auth0.WebAuth(config);
 
 export const login = () => auth0Instance.authorize();
