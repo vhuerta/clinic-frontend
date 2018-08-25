@@ -41,10 +41,12 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
+      - run: echo "HOST=odontosi-dev.mxlabs.io >> .env"
+      - run: echo "REACT_APP_BASE_URL=http://odontosi-dev.mxlabs.io/ >> .env"
       - run: yarn build
       - run:
           name: Deploy to S3
-          command: aws s3 sync build/ s3://mxlabs-clinica-development --delete
+          command: aws s3 sync build/ s3://odontosi-dev.mxlabs.io --delete
 
   deploy_production: 
     working_directory: ~/repo
@@ -59,7 +61,7 @@ jobs:
       - run: yarn build
       - run:
           name: Deploy to S3
-          command: aws s3 sync build/ s3://mxlabs-clinica-production --delete
+          command: aws s3 sync build/ s3:/odontosi.mxlabs.io. --delete
 
 workflows:
   version: 2

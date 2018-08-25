@@ -1,13 +1,15 @@
 import auth0 from "auth0-js";
 
-export const auth0Instance = new auth0.WebAuth({
-  domain      : "victroll.auth0.com",
-  clientID    : "P56HrPLK9V6MkGtlBW7u7rwYFbpvKWNH",
-  redirectUri : "http://127.0.0.1:3000/auth/callback",
-  audience    : "https://victroll.auth0.com/userinfo",
-  responseType: "token id_token",
-  scope       : "openid profile email"
-});
+const config = {
+  domain      : `${process.env.REACT_APP_AUTH0_DOMAIN}`,
+  clientID    : `${process.env.REACT_APP_AUTH0_CLIENT_ID}`,
+  redirectUri : `${process.env.REACT_APP_BASE_URL}auth/callback`,
+  audience    : `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+  responseType: `${process.env.REACT_APP_AUTH0_RESPONSE_TYPE}`,
+  scope       : `${process.env.REACT_APP_AUTH0_SCOPE}`
+};
+
+export const auth0Instance = new auth0.WebAuth(config);
 
 export const login = () => auth0Instance.authorize();
 
