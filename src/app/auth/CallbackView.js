@@ -9,9 +9,7 @@ import FullLoader from "./../common/FullLoader";
 
 export class CallbackView extends Component {
   static propTypes = {
-    login                 : PropTypes.func.isRequired,
-    handleAuthentication  : PropTypes.func.isRequired,
-    loadAuthenticationData: PropTypes.func.isRequired
+    handleAuthentication: PropTypes.func.isRequired
   };
 
   state = { isLoading: true };
@@ -28,12 +26,8 @@ export class CallbackView extends Component {
 
 export default () => (
   <AuthConsumer>
-    {({ handleAuthentication, loadAuthenticationData, login }) => (
-      <CallbackView
-        handleAuthentication={handleAuthentication}
-        loadAuthenticationData={loadAuthenticationData}
-        login={login}
-      />
+    {({ handleAuthentication }) => (
+      <CallbackView handleAuthentication={handleAuthentication} />
     )}
   </AuthConsumer>
 );

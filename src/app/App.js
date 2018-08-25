@@ -3,34 +3,12 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
-  Link
+  Redirect
 } from "react-router-dom";
 import ProtectedRouteHoC from "./auth/ProtectedRouteHoC";
 import AuthRoutes from "./auth/AuthRoutes";
-import { AuthProvider, AuthConsumer } from "./auth/AuthContext";
-
-const Home = () => (
-  <AuthConsumer>
-    {({ payload }) => (
-      <Fragment>
-        <h1>Home {payload.nickname}</h1>
-        <ul>
-          <li>
-            <Link to="/">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/pacientes">Pacientes</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/" exact component={() => <h1>Dashboard</h1>} />
-          <Route path="/pacientes" exact component={() => <h1>Pacientes</h1>} />
-        </Switch>
-      </Fragment>
-    )}
-  </AuthConsumer>
-);
+import SecuredRoutes from "./secured/SecuredRoutes";
+import { AuthProvider } from "./auth/AuthContext";
 
 class App extends Component {
   render() {
@@ -40,7 +18,7 @@ class App extends Component {
           <Fragment>
             <Switch>
               <Route path="/auth" component={AuthRoutes} />
-              <Route path="/" component={ProtectedRouteHoC(Home)} />
+              <Route path="/" component={ProtectedRouteHoC(SecuredRoutes)} />
               <Redirect to="/" />
             </Switch>
           </Fragment>

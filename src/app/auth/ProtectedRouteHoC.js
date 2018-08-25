@@ -4,7 +4,7 @@ import { AuthConsumer } from "./AuthContext";
 
 import FullLoader from "../common/FullLoader";
 
-class RouteProtector extends Component {
+export class RouteProtector extends Component {
   static propTypes = {
     children            : PropTypes.element.isRequired,
     isAuthenticated     : PropTypes.bool.isRequired,
