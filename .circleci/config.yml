@@ -41,8 +41,8 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: echo "HOST=odontosi-dev.mxlabs.io >> .env"
-      - run: echo "REACT_APP_BASE_URL=http://odontosi-dev.mxlabs.io/ >> .env"
+      - run: echo "HOST=odontosi-dev.mxlabs.io" >> .env
+      - run: echo "REACT_APP_BASE_URL=http://odontosi-dev.mxlabs.io/" >> .env
       - run: yarn build
       - run:
           name: Deploy to S3
