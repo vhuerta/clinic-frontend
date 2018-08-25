@@ -6,7 +6,7 @@ import Logo from "../../assets/logo.png";
 const loaderSize = 150;
 const animationDuration = 4;
 
-const FullContainer = Styled.div`
+export const FullContainer = Styled.div`
 & {
   width: 100%;
   height: 100vh;

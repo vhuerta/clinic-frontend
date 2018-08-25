@@ -33,10 +33,6 @@ const Home = () => (
 );
 
 class App extends Component {
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
-
   render() {
     return (
       <Router>

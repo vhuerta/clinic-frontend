@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import { AuthConsumer } from "./AuthContext";
 import FullLoader from "./../common/FullLoader";
 
-export class Callback extends Component {
+export class CallbackView extends Component {
   static propTypes = {
     login                 : PropTypes.func.isRequired,
     handleAuthentication  : PropTypes.func.isRequired,
@@ -18,11 +18,7 @@ export class Callback extends Component {
 
   async componentDidMount() {
     const [err] = await to(this.props.handleAuthentication());
-    if (err) {
-      return this.props.login();
-    }
-    this.props.loadAuthenticationData();
-    setTimeout(() => this.setState({ isLoading: false }), 2000);
+    if (!err) this.setState({ isLoading: false });
   }
 
   render() {
@@ -33,7 +29,7 @@ export class Callback extends Component {
 export default () => (
   <AuthConsumer>
     {({ handleAuthentication, loadAuthenticationData, login }) => (
-      <Callback
+      <CallbackView
         handleAuthentication={handleAuthentication}
         loadAuthenticationData={loadAuthenticationData}
         login={login}

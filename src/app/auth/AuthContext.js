@@ -1,4 +1,5 @@
 import React, { createContext, Component } from "react";
+import to from "await-to-js";
 import {
   getAuthenticationData,
   handleAuthentication,
@@ -21,7 +22,16 @@ class AuthProvider extends Component {
   };
 
   login = login;
-  handleAuthentication = handleAuthentication;
+
+  handleAuthentication = async () => {
+    const [error] = await to(handleAuthentication());
+    if (!error) {
+      this.loadAuthenticationData();
+    } else {
+      this.login();
+      throw error;
+    }
+  };
 
   loadAuthenticationData = () => {
     const {

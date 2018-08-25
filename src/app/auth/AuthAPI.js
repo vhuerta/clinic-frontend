@@ -6,7 +6,7 @@ export const auth0Instance = new auth0.WebAuth({
   redirectUri : "http://127.0.0.1:3000/auth/callback",
   audience    : "https://victroll.auth0.com/userinfo",
   responseType: "token id_token",
-  scope       : "openid profile"
+  scope       : "openid profile email"
 });
 
 export const login = () => auth0Instance.authorize();
